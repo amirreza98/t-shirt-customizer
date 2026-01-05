@@ -9,7 +9,7 @@ const DownloadButton = ({ logoDecal, fullDecal}) => {
   const snap = useSnapshot(state);
 
   const handleDownloadImage = () => {
-    // گرفتن اسکرین‌شات از کل صفحه
+
     const color = snap.color ? snap.color : "default-color";
     const fileName = `tshirt-${color}.pdf`;
 
@@ -17,7 +17,6 @@ const DownloadButton = ({ logoDecal, fullDecal}) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
 
-      // تنظیم تصویر داخل PDF (موقعیت و اندازه می‌تواند تغییر کند)
       pdf.addImage(imgData, 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
 
       pdf.setFontSize(16);
@@ -25,9 +24,9 @@ const DownloadButton = ({ logoDecal, fullDecal}) => {
 
       pdf.addPage();
 
-      pdf.addImage(logoDecal, 'PNG', 5, 10, 100, 100); // موقعیت و اندازه تکسچر را تنظیم کنید
+      pdf.addImage(logoDecal, 'PNG', 5, 10, 100, 100);
       pdf.text("logo", 45, 10);
-      pdf.addImage(fullDecal, 'PNG', 110, 10, 100, 100); // موقعیت و اندازه تکسچر را تنظیم کنید
+      pdf.addImage(fullDecal, 'PNG', 110, 10, 100, 100);
       pdf.text("full texture", 145, 10);
 
       
@@ -46,11 +45,8 @@ const DownloadButton = ({ logoDecal, fullDecal}) => {
 export default DownloadButton;
 
 
-// در فایل helpers.jsx
-
 export const getContrastingColor = (color) => {
-  // فرضاً این تابع برای تولید یک رنگ متضاد با ورودی است
-  // یک مثال ساده برای برگرداندن سفید یا مشکی بر اساس ورودی
+
   const hexColor = color.replace('#', '');
 
   const r = parseInt(hexColor.substring(0, 2), 16);
