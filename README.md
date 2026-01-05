@@ -139,10 +139,7 @@ Currently, two official plugins are available:
 
 
 
-Evaluate your proposed features one by one
-1. “Integrate AI into it”
-⚠️ Danger zone if vague
-Good only if AI has a clear business role, not “AI for the sake of AI”.
+
 High-signal AI use cases (acceptable):
 AI generates print-ready design variants (SVG/PNG constraints, colors, layers)
 AI validates designs for print feasibility (contrast, resolution, ink limits)
