@@ -130,3 +130,80 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+
+
+
+
+
+
+
+Evaluate your proposed features one by one
+1. “Integrate AI into it”
+⚠️ Danger zone if vague
+Good only if AI has a clear business role, not “AI for the sake of AI”.
+High-signal AI use cases (acceptable):
+AI generates print-ready design variants (SVG/PNG constraints, colors, layers)
+AI validates designs for print feasibility (contrast, resolution, ink limits)
+AI creates production summaries for manufacturers
+Low-signal AI use cases (avoid):
+“Chat with the designer”
+“Generate random designs”
+Generic text/image generation
+If AI is not tied to production constraints, recruiters will ignore it.
+2. “Search local creators to make the T-shirt”
+✅ Very strong idea
+This turns the project into a marketplace / supply-side platform.
+High-signal if you implement:
+Creator profiles
+Location-based filtering
+Capability matching (DTG, screen print, embroidery)
+Request/quote workflow
+This screams:
+product thinking + backend ownership
+3. “Search online for similar products”
+⚠️ Good, but must be framed correctly
+Do NOT frame this as:
+“I scrape the internet”
+Instead frame it as:
+Product similarity detection
+Competitive availability check
+Duplicate design prevention
+Implementation options:
+Vector embeddings for design similarity
+External product search APIs
+Caching + rate limiting
+Now it becomes a systems problem, not a gimmick.
+When this project becomes STRONGER than CISpace
+This project beats CISpace only if you deliver:
+Mandatory backend features
+Auth (users, creators, roles)
+Order lifecycle (draft → submitted → quoted → fulfilled)
+Design storage + versioning
+API-first architecture
+Basic analytics (conversion, design completion)
+Mandatory engineering signals
+Clear system architecture diagram
+README that explains trade-offs
+Error handling, rate limiting, async jobs
+Without these, CISpace still wins.
+Time & risk reality check (very important)
+Be honest with yourself:
+If you need 2–3 weeks → acceptable
+If this turns into “I’ll keep improving it” → abort
+You cannot afford open-ended projects right now.
+My professional recommendation
+If your goal is fastest interview traction
+👉 Stick with CISpace as your primary project
+Add this T-shirt platform as secondary only if enhanced.
+If your goal is differentiation + AI angle
+👉 You may pick the T-shirt platform only if:
+You freeze scope
+You write backend-first
+You frame it as a commerce + manufacturing system
+Final decision rule (simple)
+Ask yourself:
+“If I had to explain this in 60 seconds to a recruiter, would they hear business system or cool demo?”
+If business system → proceed
+If cool demo → stop and go back to CISpace
