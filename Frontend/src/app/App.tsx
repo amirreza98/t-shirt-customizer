@@ -1,4 +1,4 @@
-import Canvas from "../canvas";
+import Canvas from "../features/design";
 import Customizer from "../pages/Customizer";
 import Home from "../pages/Home";
 
