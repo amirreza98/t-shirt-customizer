@@ -1,14 +1,11 @@
-import { useSyncExternalStore } from "react";
-import { getUser, isAuthenticated } from "../model/auth.store";
+import { useSnapshot } from "valtio";
+import authState from "../store";
 
 export function useAuth() {
-  const user = useSyncExternalStore(
-    () => () => {}, 
-    getUser
-  );
+  const snap = useSnapshot(authState);
 
   return {
-    user,
-    isAuthenticated: isAuthenticated(),
+    user: snap.user,
+    isAuthenticated: snap.isAuthenticated,
   };
 }

@@ -12,6 +12,14 @@ import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 import { ColorPicker, CustomButton, FilePicker, Tab } from '../shared/components';
 
+
+import { useAuth } from "../features/auth/hooks/use-auth";
+import { ProtectedRoute } from "../features/auth/ui/protected-route";
+
+const CustomizerContent = () => {
+  return <h1>Customizer Page (این صفحه فقط بعد از لاگین قابل دیدنه)</h1>;
+};
+
 const Customizer = () => {
 
   const snap = useSnapshot(state);
@@ -87,62 +95,64 @@ const Customizer = () => {
   }
 
   return (
-    <AnimatePresence>
-      {!snap.intro && (
-        <>
-          <motion.div
-            key="custom"
-            className="absolute top-0 left-0 z-10"
-            {...slideAnimation('left')}
-          >
-            <div className="flex items-center min-h-screen">
-              <div className="editortabs-container tabs">
-                {EditorTabs.map((tab) => (
-                  <Tab 
-                    key={tab.name}
-                    tab={tab}
-                    handleClick={() => setActiveEditorTab(prevTab => prevTab === tab.name ? "" : tab.name)}
-                  />
-                ))}
+    <ProtectedRoute>
+      <AnimatePresence>
+        {!snap.intro && (
+          <>
+            <motion.div
+              key="custom"
+              className="absolute top-0 left-0 z-10"
+              {...slideAnimation('left')}
+            >
+              <div className="flex items-center min-h-screen">
+                <div className="editortabs-container tabs">
+                  {EditorTabs.map((tab) => (
+                    <Tab 
+                      key={tab.name}
+                      tab={tab}
+                      handleClick={() => setActiveEditorTab(prevTab => prevTab === tab.name ? "" : tab.name)}
+                    />
+                  ))}
 
-                {generateTabContent()}
+                  {generateTabContent()}
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            className="absolute z-10 top-5 right-5"
-            {...fadeAnimation}
-          >
-            <CustomButton 
-              type="filled"
-              title="Go Back"
-              handleClick={() => state.intro = true}
-              customStyles="w-fit px-4 py-2.5 font-bold text-sm"
-            />
-          </motion.div>
-
-          <motion.div
-            className='filtertabs-container'
-            {...slideAnimation("up")}
-          >
-            {FilterTabs.map((tab) => (
-              <Tab
-                key={tab.name}
-                tab={tab}
-                isFilterTab
-                isActiveTab={activeFilterTab[tab.name]}
-                handleClick={() => handleActiveFilterTab(tab.name)}
+            <motion.div
+              className="absolute z-10 top-5 right-5"
+              {...fadeAnimation}
+            >
+              <CustomButton 
+                type="filled"
+                title="Go Back"
+                handleClick={() => state.intro = true}
+                customStyles="w-fit px-4 py-2.5 font-bold text-sm"
               />
-            ))}
-            <DownloadButton 
-              logoDecal={snap.logoDecal}
-              fullDecal={snap.fullDecal}
-            />
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+            </motion.div>
+
+            <motion.div
+              className='filtertabs-container'
+              {...slideAnimation("up")}
+            >
+              {FilterTabs.map((tab) => (
+                <Tab
+                  key={tab.name}
+                  tab={tab}
+                  isFilterTab
+                  isActiveTab={activeFilterTab[tab.name]}
+                  handleClick={() => handleActiveFilterTab(tab.name)}
+                />
+              ))}
+              <DownloadButton 
+                logoDecal={snap.logoDecal}
+                fullDecal={snap.fullDecal}
+              />
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </ProtectedRoute>
   )
 }
 

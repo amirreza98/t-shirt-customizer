@@ -9,13 +9,14 @@ import {
   headTextAnimation,
   slideAnimation
 } from '../config/motion';
+import { LoginForm } from "../features/auth/ui/login-form";
 
 const Home = () => {
   const snap = useSnapshot(state);
 
   return (
     <AnimatePresence>
-      {snap.intro && (
+      {snap.intro ? (
         <motion.div className="home"{...slideAnimation('left')}>
           <motion.header {...slideAnimation("down")}>
             <img
@@ -36,8 +37,7 @@ const Home = () => {
               <p className="max-w-md font-normal text-gray-600 text-base">
                 create your unique and exclusive shirt with our brand-new 3d customization tool. <strong>Unless your imagination</strong>{" "} and define your own style.
               </p>
-
-              <CustomButton 
+              <CustomButton
                 type="filled"
                 title="Log In"
                 handleClick={() => state.intro = false}
@@ -46,7 +46,9 @@ const Home = () => {
             </motion.div>
           </motion.div>
         </motion.div>
-      )}
+      ):(
+          <LoginForm />
+        )}
     </AnimatePresence>
   )
 }

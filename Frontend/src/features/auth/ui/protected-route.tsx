@@ -1,14 +1,25 @@
-import { Navigate } from "react-router-dom";
-import { isAuthenticated } from "../model/auth.store";
+import { ReactNode, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/use-auth";
 
-export function ProtectedRoute({
-  children,
-}: {
-  children: JSX.Element;
-}) {
-  if (!isAuthenticated()) {
-    return <Navigate to="/login" replace />;
+interface ProtectedRouteProps {
+  children: ReactNode;
+}
+
+export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+  const { isLoggedIn, isLoading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoading && !isLoggedIn) {
+      navigate("/login"); // مسیر فرم لاگین
+    }
+  }, [isLoggedIn, isLoading, navigate]);
+
+  if (isLoading || !isLoggedIn) {
+    // می‌تونی یه loader هم اینجا بذاری
+    return <p className="text-center mt-20">در حال بررسی دسترسی...</p>;
   }
 
-  return children;
-}
+  return <>{children}</>;
+};
