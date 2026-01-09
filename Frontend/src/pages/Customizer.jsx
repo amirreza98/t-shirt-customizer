@@ -10,7 +10,7 @@ import { download } from '../assets';
 import DownloadButton , {reader}  from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
-import { ColorPicker, CustomButton, FilePicker, Tab } from '../components';
+import { ColorPicker, CustomButton, FilePicker, Tab } from '../shared/components';
 
 const Customizer = () => {
 
