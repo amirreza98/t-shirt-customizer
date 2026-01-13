@@ -1,50 +1,26 @@
 import express from "express";
-import pool from "./DB.js"; 
+import cors from "cors";
+import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import authRoutes from "./routes/auth.js";
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:5001",
+    credentials: true,
+  })
+);
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
-// Test database connection
-app.get("/api/test", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT NOW()");
-    res.json({ success: true, time: result.rows[0] });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Database connection failed" });
-  }
-});
+app.use("/api/auth", authRoutes);
 
-// Get all users
-app.get("/api/users", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT id, name, email, created_at FROM users");
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Create a new user
-app.post("/api/users", async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
-    const result = await pool.query(
-      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, created_at",
-      [name, email, password]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+console.log(`Server is running on port ${PORT}`);
 });
