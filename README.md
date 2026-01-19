@@ -1,3 +1,100 @@
+<<<<<<< HEAD
+=======
+# Print-on-Demand Manufacturing Platform
+
+## System Architecture Diagram
+┌──────────────────────────┐
+│        Frontend          │
+│  React + Vite            │
+│                          │
+│  - Auth (User / Creator) │
+│  - Design Customizer     │
+│  - Order Management      │
+│  - Creator Discovery     │
+└─────────────┬────────────┘
+              │ HTTPS (JWT)
+              ▼
+┌──────────────────────────┐
+│        API Layer         │
+│  Node.js (Fastify)       │
+│                          │
+│  - Auth & Roles          │
+│  - Design API            │
+│  - Order Lifecycle       │
+│  - Creator Matching      │
+│  - Analytics             │
+└─────────────┬────────────┘
+              │
+              │ Async Jobs / Events
+              ▼
+┌──────────────────────────┐
+│        Job Queue         │
+│  Redis + BullMQ          │
+│                          │
+│  - Design validation     │
+│  - AI variant generation │
+│  - Similarity checks     │
+└─────────────┬────────────┘
+              │
+              ▼
+┌──────────────────────────┐
+│        AI Services       │
+│  (Isolated Boundary)     │
+│                          │
+│  - Print feasibility     │
+│  - Design normalization  │
+│  - Vector embeddings     │
+└─────────────┬────────────┘
+              │
+              ▼
+┌──────────────────────────┐
+│     Data & Storage       │
+│                          │
+│  PostgreSQL              │
+│  - Users / Roles         │
+│  - Creators              │
+│  - Designs (metadata)    │
+│  - Orders / Quotes       │
+│                          │
+│  Object Storage (S3)     │
+│  - SVG / PNG designs     │
+└──────────────────────────┘
+
+
+## Problem Statement
+<what business problem this system solves>
+
+## Core Features
+<auth, orders, creators, AI validation>
+
+## Order Lifecycle
+DRAFT
+  ↓
+SUBMITTED
+  ↓
+QUOTED
+  ↓
+ACCEPTED
+  ↓
+IN_PRODUCTION
+  ↓
+FULFILLED
+
+
+## API Overview
+<key endpoints>
+
+## AI Design Decisions
+<why + how AI is used>
+
+## Trade-offs & Limitations
+<what you intentionally did NOT build>
+
+## How to Run Locally
+
+
+
+>>>>>>> feat/user
 3D Fashion Customization Platform
 
 ✨ Project Description

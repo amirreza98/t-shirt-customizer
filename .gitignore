@@ -8,9 +8,17 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+<<<<<<< HEAD
 dist
 dist-ssr
 *.local
+=======
+node_modules/
+dist
+dist-ssr
+*.local
+.env
+>>>>>>> feat/user
 
 # Editor directories and files
 .vscode/*
@@ -21,4 +29,8 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
+<<<<<<< HEAD
 *.sw?
+=======
+*.sw?
+>>>>>>> feat/user
