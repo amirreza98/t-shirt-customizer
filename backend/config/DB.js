@@ -6,7 +6,7 @@ dotenv.config();
 // ساخت Pool اتصال
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } // مهم برای Supabase
+  ssl: { rejectUnauthorized: false }
 });
 
 pool.on("connect", () => {

@@ -7,18 +7,25 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { isLoggedIn, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoading && !isLoggedIn) {
-      navigate("/login"); // مسیر فرم لاگین
+    if (!isLoading && !isAuthenticated) {
+      navigate("/login");
     }
-  }, [isLoggedIn, isLoading, navigate]);
+  }, [isAuthenticated, isLoading, navigate]);
 
-  if (isLoading || !isLoggedIn) {
-    // می‌تونی یه loader هم اینجا بذاری
-    return <p className="text-center mt-20">در حال بررسی دسترسی...</p>;
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-xl">Checking authentication...</p>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
   }
 
   return <>{children}</>;
