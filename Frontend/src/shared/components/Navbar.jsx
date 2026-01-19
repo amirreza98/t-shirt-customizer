@@ -36,9 +36,9 @@ const Navbar = () => {
               className="w-8 h-8 object-contain" 
             />
           </motion.header>
-          <Link to="/" className="font-bold">
+          <div onClick={() => state.intro = true} className="font-bold cursor-pointer">
             T-Shirt Customizer
-          </Link>
+          </div>
         </motion.div>
         <div>
           {user ? (
