@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://t-shirt-customizer-backend.onrender.com/api/auth";
+const API_URL = "https://t-shirt-customizer-3pju.onrender.com/api/auth";
 
 axios.defaults.withCredentials = true;
 

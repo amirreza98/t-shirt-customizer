@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors({
   origin: 'https://thriving-bubblegum-aee085.netlify.app',
-  credentials: true // Important if you're sending cookies
+  credentials: true
 }));
 
 app.use(express.json());
