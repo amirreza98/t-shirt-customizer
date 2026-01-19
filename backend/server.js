@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://thriving-bubblegum-aee085.netlify.app',
   credentials: true // Important if you're sending cookies
 }));
 
